@@ -20,9 +20,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         
        
-        let mySphere = createSphere(radius: 0.1, content: "grass", vector: SCNVector3(0, 0.2, -1))
+       // let mySphere = createSphere(radius: 0.1, content: "grass", vector: SCNVector3(0, 0.2, -1))
         
-        sceneView.scene.rootNode.addChildNode(mySphere)
+        let earth = createSphere(radius: 0.1, content: "earthday.jpg", vector: SCNVector3(0, 0.1, -1))
+        let moon = createSphere(radius: 0.04, content: "moon.jpg", vector: SCNVector3(0.25, 0.1, -1))
+        let sun = createSphere(radius: 1, content: "sun.jpg", vector: SCNVector3(-2,0.1,-1))
+        
+        
+        sceneView.scene.rootNode.addChildNode(earth)
+        sceneView.scene.rootNode.addChildNode(moon)
+        sceneView.scene.rootNode.addChildNode(sun)
+
         sceneView.automaticallyUpdatesLighting = true
        
     }
