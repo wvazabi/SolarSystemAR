@@ -27,6 +27,48 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let sun = createSphere(radius: 1, content: "sun.jpg", vector: SCNVector3(-2,0.1,-1))
         
         
+        let moonParentNode = SCNNode()
+        moonParentNode.position = SCNVector3(0, 0.1, -1)
+             let moonParentRotaion = SCNAction.rotateBy(x: 0, y: 2 * .pi, z: 0, duration: 5)
+             let moonParentRotationRepeat = SCNAction.repeatForever(moonParentRotaion)
+             moonParentNode.runAction(moonParentRotationRepeat)
+
+      
+        let nodeMoon = SCNNode()
+             nodeMoon.position = SCNVector3(0, 0, -0.3)
+       
+      
+        
+             let moonRotaion = SCNAction.rotateBy(x: 0, y: 2 * .pi, z: 0, duration: 8)
+             let moonRotaionRepeat = SCNAction.repeatForever(moonRotaion)
+             nodeMoon.runAction(moonRotaionRepeat)
+             moonParentNode.addChildNode(nodeMoon)
+        
+             earth.addChildNode(moonParentNode)
+        
+        
+        
+        
+        let earthAction = SCNAction.rotate(by: 360 * CGFloat((Double.pi)/180), around: SCNVector3(x: 0, y: 1, z: 0), duration: 8)
+        let moonAction = SCNAction.rotate(by: 360 * CGFloat((Double.pi)/180), around: SCNVector3(x: 0, y: 1, z: 0), duration: 8)
+        let sunAction = SCNAction.rotate(by: 360 * CGFloat((Double.pi)/180), around: SCNVector3(x: 0, y: 1, z: 0), duration: 8)
+        
+        let repeatAction = SCNAction.repeatForever(earthAction)
+        let repeatActionMoon = SCNAction.repeatForever(moonAction)
+        let repeatActionSun = SCNAction.repeatForever(sunAction)
+        
+        
+        let action2 = SCNAction.rotateBy(x: 0, y: 2 * .pi, z: 0, duration: 5)
+               let repeatAction2 = SCNAction.repeatForever(action2)
+               moon.runAction(repeatAction2)
+        
+        
+        //moon.runAction(repeatActionMoon)
+        earth.runAction(repeatAction)
+        sun.runAction(repeatActionSun)
+        
+        
+        
         sceneView.scene.rootNode.addChildNode(earth)
         sceneView.scene.rootNode.addChildNode(moon)
         sceneView.scene.rootNode.addChildNode(sun)
